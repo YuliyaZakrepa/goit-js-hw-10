@@ -57,6 +57,7 @@ function handleClick() {
     if (delta <= 0) {
       clearInterval(setIntervalId);
       input.disabled = false;
+      addTextContent({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
       iziToast.success({
         message: 'Time is over',
