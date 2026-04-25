@@ -41,6 +41,13 @@ const options = {
 };
 flatpickr('#datetime-picker', options);
 
+function addTextContent(obj) {
+  secs.textContent = String(obj.seconds).padStart(2, '0');
+  mns.textContent = String(obj.minutes).padStart(2, '0');
+  hours.textContent = String(obj.hours).padStart(2, '0');
+  days.textContent = String(obj.days).padStart(2, '0');
+}
+
 function handleClick() {
   btnStart.disabled = true;
   input.disabled = true;
@@ -50,7 +57,7 @@ function handleClick() {
     if (delta <= 0) {
       clearInterval(setIntervalId);
       input.disabled = false;
-      addTextContent({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
       iziToast.success({
         message: 'Time is over',
         position: 'topCenter',
@@ -61,12 +68,6 @@ function handleClick() {
       return;
     }
     const object = convertMs(delta);
-    function addTextContent(obj) {
-      secs.textContent = String(obj.seconds).padStart(2, '0');
-      mns.textContent = String(obj.minutes).padStart(2, '0');
-      hours.textContent = String(obj.hours).padStart(2, '0');
-      days.textContent = String(obj.days).padStart(2, '0');
-    }
     addTextContent(object);
   }, 1000);
 }
